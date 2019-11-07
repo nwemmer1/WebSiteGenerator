@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+    <body>
+
+<h1>Nathan Wemmer's Simple Web Page Generator</h1>
+
+<table border="1" style="width:100%">
+    <tr>
+        <th>Item</th>
+        <th>Description</th>
+        <th>Action</th>
+    </tr>
+    <tr>
+        <td>Open</td>
+        <td>Open the design window</td>
+        <td><button onclick="openWin()">Open</button></td>
+    </tr>
+    <tr>
+        <td>Button</td>
+        <td>Add a button to the design window</td>
+        <td><button onclick="addButton()">Add</button></td>
+    </tr>
+    <tr>
+        <td>Examples</td>
+        <td>Add a button to open the example window</td>
+        <td><button onclick="addExamples()">Add</button></td>
+    </tr>
+    <tr>
+        <td>Close</td>
+        <td>Close the design window</td>
+        <td><button onclick="closeWindow()">Close</button></td>
+    </tr>
+    <tr>
+    	<td>Line Break</td>
+    	<td>Adds a line break to the page.</td>
+    	<td><button onclick="addBreak()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Horizontal Rule</td>
+    	<td>Adds a horizontal rule to the page. </td>
+    	<td><button onclick="addHorizontalRule()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Text box</td>
+    	<td>Adds a text box to the page. </td>
+    	<td><button onclick="addTextbox()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Title</td>
+    	<td>Change the title of the webpage.</td>
+    	<td><button onclick="addTitle()">Change</button></td>
+    </tr>
+    <tr>
+    	<td>Background Color</td>
+    	<td>Change the background color of the webpage</td>
+    	<td>
+    		<form>
+    			<select id="color">
+    				<option value="red">Red</option>
+    				<option value="green">Green</option>
+    				<option value="blue">Blue</option>
+    				<option value="#FFFF00">Yellow</option>
+    				<option value="#FFFFFF">White</option>
+    			</select>
+    		</form>
+    	<br> 
+    	<button onclick="backgroundColor()">Pick color </button></td>
+    </tr>
+    <tr>
+    	<td>Border</td>
+    	<td>Add a border around the whole page.</td>
+    	<td><button onclick="borderPage()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Add some text</td>
+    	<td>Add some text to the page.</td>
+    	<td>
+    		<input id="addtext" type="text" style="width:300px; height:200px">
+    		<br>
+    		<button onclick="addText()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Add a heading</td>
+    	<td>Add a heading to your page.</td>
+    	<td>
+    		<input id="heading" type="text" style="width:150px;">
+    		<br>
+    		<form>
+    			<select id="heading_size">
+    				<option value="h1">1</option>
+    				<option value="h2">2</option>
+    				<option value="h3">3</option>
+    				<option value="h4">4</option>
+    			</select>
+    		</form>
+    		<button onclick="addHeading()">Add Heading</button>
+    	</td>
+    </tr>
+    <tr>
+    	<td>Add a file field</td>
+    	<td>Add an file field to your page.</td>
+    	<td><button onclick="addFile()">Add</button></td>
+    </tr>
+    <tr>
+    	<td>Add an image or video</td>
+    	<td>Add an image or video to the page (given a link)</td>
+    	<td><input type="radio" name="addtype" value="image">Image<br>
+    		<input type="radio" name="addtype" value="video">Video<br>
+    		<input type="text" name="addurl"><br>
+    		<button onclick="addMedia()">Add Media</button>
+    	</td>
+    </tr>
+
+
+
+</table>
+
+
+        <button onclick='window.open("http://www.w3schools.com/jsref/obj_window.asp")'>References</button>
+        <button onclick='window.open("http://www.w3schools.com/jsref/met_win_open.asp")'>Examples</button>
+        
+        <script>
+        var page = "<p>ISP PA5</p>";
+        var myWindow = null;
+        
+        function openWin() {
+	    if(myWindow != null) myWindow.close();
+            myWindow = window.open("", "ISP PA5", "width=800,height=168");
+            myWindow.document.write(page);
+            }
+        
+        function addButton() {
+            page += "<button>A do nothing button</button>";
+        }
+
+        function addExamples() {
+            page += "<button onclick='window.open(" + "\"" + "http://www.w3schools.com/jsref/met_win_open.asp" + "\"" + ")'>Examples</button>";
+        }
+        
+        function closeWindow() {
+            myWindow.close();
+        }
+ 
+        function reference() {
+            window.open("http://www.w3schools.com/jsref/obj_window.asp");
+        }
+        
+        function examples() {
+            window.open("http://www.w3schools.com/jsref/met_win_open.asp");
+        }
+        function addBreak()
+        {
+        	page += "<br>";
+        }
+        function addHorizontalRule()
+        {
+        	page += "<hr>";
+        }
+        function addTextbox()
+        {
+        	page += "<input type='text'>";
+        }
+        function addTitle()
+        {
+        	title = prompt("Please enter the desired title of your webpage.");
+        	page += "<title>"+title+"</title>";
+        }
+        function backgroundColor()
+        {
+        	var x = document.getElementById("color");
+        	result = x.options[x.selectedIndex].value;
+        	page += "<style> body{background-color: "+result+";}</style>"; 
+        }
+        function borderPage()
+        {
+        	page += "<style> body{border: 5px solid black</style>";
+        }
+        function addText()
+        {
+        	var x = document.getElementById("addtext").value;
+        	page += x;
+        }
+        function addHeading()
+        {
+        	var x = document.getElementById("heading_size");
+        	xresult = x.options[x.selectedIndex].value;
+        	var y = document.getElementById("heading").value;
+        	page += "<"+xresult+">"+y+"</"+xresult+">";
+        }
+        function addFile()
+        {
+        	page += "<input type ='file' id='file' name='file' accept='image/png, image/jpeg, image/gif'>";
+        }
+        function addMedia()
+        {
+        	var ele = document.getElementsByName('addtype'); 
+              
+            for(i = 0; i < ele.length; i++) { 
+                if(ele[i].checked) 
+                document.getElementById("result").innerHTML
+                        = "Gender: "+ele[i].value; 
+            } 
+        }
+
+
+        </script>
+ 
+ <h2> Features </h2>
+
+        <table border="1" style="width:100%">
+            <tr>
+                <th>HTML</th>
+                <th>CSS</th>
+                <th>JavaScript</th>
+                <th>XML</th>
+                <th>Others</th>
+            </tr>
+            <tr>
+                <th>Table</th>
+                <th>None</th>
+                <th>Window</th>
+                <th>None</th>
+                <th>None</th>
+            </tr>
+            <tr>
+                <th>.</th>
+                <th>None</th>
+                <th>Event-driven Programming</th>
+                <th>None</th>
+                <th>None</th>
+            </tr>
+        </table>
+
+        
+        
+    </body>
+</html>
+
