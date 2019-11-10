@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<title>Website Generator</title>
 <html>
     <body>
 
@@ -104,9 +105,12 @@
     <tr>
     	<td>Add an image or video</td>
     	<td>Add an image or video to the page (given a link)</td>
-    	<td><input type="radio" name="addtype" value="image">Image<br>
-    		<input type="radio" name="addtype" value="video">Video<br>
-    		<input type="text" name="addurl"><br>
+    	<td><input type="radio" id="image-val" name="addtype" value="image">Image<br>
+    		<input type="radio" id="video-val" name="addtype" value="video">Video<br>
+    		Width: <input type="number" id="width-val" name="add-width" style="width: 60px;"><br>
+    		Height: <input type="number" id="height-val" name="add-height" style="width: 60px;"><br>
+    	<br>
+    		Source: <input type="text" id="url-text" name="addurl"><br>
     		<button onclick="addMedia()">Add Media</button>
     	</td>
     </tr>
@@ -193,13 +197,18 @@
         }
         function addMedia()
         {
-        	var ele = document.getElementsByName('addtype'); 
-              
-            for(i = 0; i < ele.length; i++) { 
-                if(ele[i].checked) 
-                document.getElementById("result").innerHTML
-                        = "Gender: "+ele[i].value; 
-            } 
+        	var url-text =document.getElementById('url-text').value;
+        	var width = document.getElementById('width-val').value;
+        	var height = document.getElementById('height-val').value;
+        	if(document.getElementById('image-val').checked)
+        	{
+        		page += "<img src='"+url-text+"' width='"+width-val+"' height='"+height-val+"'>"
+        	}
+        	else if (document.getElementById('video-val').checked)
+        	{
+        		page += "<video width='"+width-val+"' height='"+height-val+"' controls> <source src='"+url-text+"' type='video/mp4'></video>";
+        	}
+           
         }
 
 
